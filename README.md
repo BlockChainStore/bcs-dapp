@@ -3,7 +3,15 @@
 [![N|Solid](https://bcschain.io/wp-content/uploads/2018/01/bsc-logo-main-70px-1.png)](https://bcschain.io)
 
 BlochChainStore is an decentralized app that aims to offer Virtual Reality services to its users.
-
+## Abstract
+Blockchain Store(BCS) is a virtual reality platform powered by 
+the Neo blockchain. Users can create, experience,
+and monetize content and application. Shop or area in BCS is permanently
+owned by the community. giving them control over their creation.
+Users claim ownership of virtual shop or area on a blockchain-base ledger.
+Shop or area owners contral what content is published to their portion,
+which is identified by a set of cartesion coordinates(x,y). Contents can be
+range from static, dynamic 3D scenes, charactor to interactitve system. 
 ## Properties of BCS blockchain
   - Public or private storage of information 
   - Proof of Presence
@@ -14,6 +22,9 @@ BlochChainStore is an decentralized app that aims to offer Virtual Reality servi
 - geotagged digital images
 - geotagged services
 - real time connection between users
+- Owner Area
+- Create Construction(Shop, Advertisment)
+- Transfer products, items between user
 
 ## Concerns
 - Privacy
@@ -23,7 +34,7 @@ BlochChainStore is an decentralized app that aims to offer Virtual Reality servi
 ## Goals:
   - Ensure the privacy of the users (of-chain storage of data)
   - Provide transparency (on-chain writing)
-  - Eleminate the fraud in advertisment campains
+  - Eleminate the fraud in advertisment campaigns
   - Deliver VR experience to end users
 
 ### Framework and Libraries
