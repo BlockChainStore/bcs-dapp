@@ -2,7 +2,7 @@
 
 [![N|Solid](https://bcschain.io/wp-content/uploads/2018/01/bsc-logo-main-70px-1.png)](https://bcschain.io)
 
-BlochChainStore is an decentralized app that aims to offer Virtual Reality services to its users.
+BlochChainStore is an decentralized app that aims to offer Augmented Reality services to its users.
 ## Abstract
 Blockchain Store(BCS) is a virtual reality platform powered by 
 the Neo blockchain. Users can create, experience,
