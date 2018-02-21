@@ -1,3 +1,4 @@
-*.avm
-*.swp
+contract/bcschain_op.avm
+contract/.bcschain_op.py.swp
+contrct_test/.test_contract.py.swp
 
