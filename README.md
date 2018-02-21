@@ -44,6 +44,11 @@ unittest for testing [docs](https://docs.python.org/3.5/library/unittest.html)
 [geopandas](http://geopandas.org/install.html) and the  [docs](http://geopandas.org/) for geospatial data
 [open-CV](https://docs.opencv.org/trunk/d7/d9f/tutorial_linux_install.html) and the  [docs](http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_tutorials.html) for visual proccessing and recognition
 
+## C2C
+Explanation of dApp logic and BCS token possible usage:
+![N|Solid](https://bcschain.io/wp-content/uploads/2018/01/D1.png)
+
+
 License
 ----
 
