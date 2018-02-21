@@ -48,6 +48,7 @@ def Main(operation, args):
             if (len(args) == 1):
                 addr = args[0]
                 Log('Registration')
+                context = GetContext()
                 addr_regis = Get(context, addr)
                 if (addr_regis == 0) :
                       Put(context, addr,100)
