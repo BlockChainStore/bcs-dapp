@@ -1,4 +1,8 @@
+# ignore compiled files
 contract/bcschain_op.avm
 contract/.bcschain_op.py.swp
 contract_test/.test_contract.py.swp
+smart_contract_api/*.pyc
+smart_contract_api/db_pass
+smart_contract_api/logging.conf
 
