@@ -34,9 +34,12 @@ def Main(operation, args):
                 addr = args[0]
                 lat = args[1]
                 lon = args[2]
+                width = args[3]
+                length = args[4]
+                height = args[5]
 
                 Log('Owning_Area')
-                res = own_area(addr,lat,lon)
+                res = own_area(addr,lat,lon,width,length,height)
                 return res
             else:
                 Log('INVALID_ARGUMENTS')
@@ -112,19 +115,22 @@ def Main(operation, args):
     Log('FORBIDDEN')
     return False
 
-def own_area(owner_address , lat, lon) :
+def own_area(owner_address , lat,lon,width,length,height) :
     if not CheckWitness(owner_address):
-        Log('ALREADY')
+        Log('FORBIDDEN')
         return False
+    
     context = GetContext()
     address = Get(context, owner_address)
-    obj = [lat,lon]
+    obj = [lat,lon,width,length,height]
     location = _data_packing(obj)
     
     if (address == 0):
         Put(context, owner_address, location)
-        Log('owned_success')
+        Log('OWNED_SUCCESS')
         return True
+    else :
+        Log('AlREADY_OWNED')
 
     return False
 
