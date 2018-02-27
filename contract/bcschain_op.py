@@ -15,7 +15,7 @@ def Main(operation, args):
     :param args: an optional list of arguments
     :type args: list
     :return: indicating the successful execution of the dApp
-    :rtype: bool
+    :rtype: string
     """
     trigger = GetTrigger()
 
@@ -42,12 +42,12 @@ def Main(operation, args):
                 Log('INVALID_ARGUMENTS')
                 return False
 
-        elif operation == 'createProduct':
+        elif operation == 'regisProduct':
             if (len(args) == 3):
                 addr = args[0]
                 uuid = args[1]
 
-                Log('Creating_Product')
+                Log('Registering_Product')
                 res = create_product(addr,uuid)
                 return res
             else:
