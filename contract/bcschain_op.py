@@ -44,11 +44,11 @@ def Main(operation, args):
 
         elif operation == 'regisProduct':
             if (len(args) == 3):
-                addr = args[0]
-                uuid = args[1]
+                seller_addr = args[0]
+                product_hash = args[1]
 
                 Log('Registering_Product')
-                res = create_product(addr,uuid)
+                res = create_product(seller_addr,product_hash)
                 return res
             else:
                 Log('INVALID_ARGUMENTS')
@@ -128,61 +128,55 @@ def own_area(owner_address , lat, lon) :
 
     return False
 
-def create_product(owner_address , uuid) :
-    if not CheckWitness(owner_address):
+def create_product(seller_address , p_hash) :
+    if not CheckWitness(seller_address):
         Log('FORBIDDEN')
         return False
     
-    if not (CheckUUID(uuid)):
-        return False
-    
-    if is_owned_area(owner_address):
+    if is_owned_area(seller_address):
         context = GetContext()
         price = 0
         status = 'inactive'
-        obj = [owner_address,price,status]
+        obj = [seller_address,price,status]
         product_data = _data_packing(obj)
-        Put(context, uuid, product_data)
-        Log('Product_Created')
+        Put(context, p_hash, product_data)
+        Log('Product_Registered')
         return True
     
     return False
 
-def set_price(owner_address , uuid, price) :
-    if not CheckWitness(owner_address):
+def set_price(seller_address , p_hash, price) :
+    if not CheckWitness(seller_address):
         Log('FORBIDDEN')
         return False
-
-    if not (CheckUUID(uuid)):
-        return False
     
-    if is_owned_product(uuid,owner_address) :
+    if is_owned_product(p_hash,seller_address) :
         context = GetContext()
         status = 'active'
-        obj = [owner_address,price,status]
+        obj = [seller_address,price,status]
         product_data = _data_packing(obj)
-        Put(context, uuid, product_data)
+        Put(context, p_hash, product_data)
         Log('SUCCESS')
         
         return True
     
     return False
 
-def activate_product(owner_address , uuid) :
-    if _set_product_status(owner_address,uuid,'active') :
+def activate_product(seller_address , p_hash) :
+    if _set_product_status(seller_address,p_hash,'active') :
         Log('ACTIVE_SUCCESS')
         return True
     
     return False
 
-def deactivate_product(owner_address ,uuid):
-    if _set_product_status(owner_address,uuid,'inactive') :
+def deactivate_product(seller_address ,p_hash):
+    if _set_product_status(seller_address,p_hash,'inactive') :
         Log('DEACTIVE_SUCCESS')
         return True
 
     return False
 
-def buy_product(buyer_address , uuid):
+def buy_product(buyer_address , p_hash):
     if not CheckWitness(buyer_address):
         Log('FORBIDDEN')
         return False
@@ -194,21 +188,18 @@ def buy_product(buyer_address , uuid):
 # helper function for handling
 ##################################################
 
-def _set_product_status(owner_address,uuid,status):
-    if not CheckWitness(owner_address):
+def _set_product_status(seller_address,p_hash,status):
+    if not CheckWitness(seller_address):
         Log('FORBIDDEN')
         return False
     
-    if not (CheckUUID(uuid)):
-        return False
-    
-    if is_owned_product(uuid,owner_address) :
+    if is_owned_product(p_hash,seller_address) :
         context = GetContext()
-        product_data_get = Get(context, uuid)
+        product_data_get = Get(context, p_hash)
         price = _get_price(product_data_get)
-        obj = [owner_address,price,status]
+        obj = [seller_address,price,status]
         product_data = _data_packing(obj)
-        Put(context, uuid, product_data)
+        Put(context, p_hash, product_data)
         
         return True
 
@@ -218,7 +209,7 @@ def is_owned_area(owner_address):
     
     return True
 
-def is_owned_product(uuid,owner_address):
+def is_owned_product(p_hash,seller_address):
     
     return True
 
@@ -240,38 +231,19 @@ def _get_status(product_data) :
 
     return status
 
-def _change_owner(uuid,new_owner_address) :
+def _change_owner(p_hash,new_owner_address) :
     context = GetContext()
-    product_data_get = Get(context, uuid)
+    product_data_get = Get(context, p_hash)
     if not len(product_data_get) == 0:
-        obj = _data_unpacking(product_data)
+        obj = _data_unpacking(product_data_get)
         obj = [new_owner_address,obj[1],obj[2]]
     
         product_data = _data_packing(obj)
-        Put(context, uuid, product_data)
+        Put(context, p_hash, product_data)
+        
+        return True
 
     return False
-
-def CheckUUID(uuid):
-    Log("CHECK_UUID_LEN")
-    if (len(uuid) != 36):
-        Log('UUID_INVALID_LEN')
-        return False
-
-    Log("CHECK_UUID_DASH")
-    dashes = [8, 13, 18, 23]
-    for dash in dashes:
-        if not (uuid[dash:dash+1] == '-'):
-            Log('UUID_INVALID_DASH')
-            return False
-
-    Log("CHECK_UUID_VERSION")
-    if not (uuid[14:15] == '4'):
-        Log('UUID_INVALID_VERSION')
-        return False
-
-    Log('UUID_VALID')
-    return True
 
 
 # helper function for data handling
