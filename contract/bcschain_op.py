@@ -59,11 +59,11 @@ def Main(operation, args):
                 
         elif operation == 'activateProduct':
             if (len(args) == 2):
-                addr = args[0]
-                uuid = args[1]
+                seller_addr = args[0]
+                product_hash = args[1]
 
                 Log('Activating_Product')
-                res = activate_product(addr ,uuid)
+                res = activate_product(seller_addr ,product_hash)
                 return res
             else:
                 Log('INVALID_ARGUMENTS')
@@ -71,12 +71,12 @@ def Main(operation, args):
         
         elif operation == 'setPrice':
             if (len(args) == 3):
-                addr = args[0]
-                uuid = args[1]
+                seller_addr = args[0]
+                product_hash = args[1]
                 price = args[2]
 
                 Log('Setting_Price')
-                res = set_price(addr,uuid,price)
+                res = set_price(seller_addr,product_hash,price)
                 return res
             else:
                 Log('INVALID_ARGUMENTS')
@@ -85,11 +85,11 @@ def Main(operation, args):
 
         elif operation == 'buyProduct':
             if (len(args) == 2):
-                addr = args[0]
-                uuid = args[1]
+                buyer_addr = args[0]
+                product_hash = args[1]
 
                 Log('Buying_Product')
-                res = buy_product(addr,uuid)
+                res = buy_product(buyer_addr,product_hash)
                 return res
 
             else:
@@ -98,11 +98,11 @@ def Main(operation, args):
 
         elif operation == 'deactivateProduct':
             if (len(args) == 2):
-                addr = args[0]
-                uuid = args[1]
+                seller_addr = args[0]
+                product_hash = args[1]
 
                 Log('Deactivating_Product')
-                res = deactivate_product(addr,uuid)
+                res = deactivate_product(seller_addr,product_hash)
                 return res
 
             else:
