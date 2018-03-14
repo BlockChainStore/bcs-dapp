@@ -1,0 +1,3 @@
+[submodule "neo-node"]
+	path = neo-node
+	url = https://gitlab.com/bilalws/neo-node.git
